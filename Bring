@@ -1,0 +1,21 @@
+local currPlayer = game:GetService("Players").LocalPlayer
+local servPlayer = game:GetService("Players")
+
+local teams = game:GetService("Teams")
+
+function isSameTeam(player)
+    if player.team ~= currPlayer.team and player.team ~= teams["Neutral"] then
+        return false
+    else
+        return true
+    end
+end
+
+while task.wait() do
+for _, v in next, servPlayer:GetPlayers() do
+    if v ~= currPlayer and not isSameTeam(v) then
+        print(v)
+        v.Character.HumanoidRootPart.CFrame = currPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(2.2,0.5,-6)
+    end
+end
+end
